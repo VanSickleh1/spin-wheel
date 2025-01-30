@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spin the Wheel</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Winwheel.js/2.8.0/Winwheel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/TweenMax/1.20.6/TweenMax.min.js"></script>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+    .spin-button {
+      background-color: #ff6600;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Spin the Wheel & Win a Prize!</h2>
+<canvas id="canvas" width="400" height="400"></canvas>
+<br>
+<button class="spin-button" onclick="spinWheel()">Spin Now</button>
+
+<script>
+  let wheel = new Winwheel({
+    numSegments: 6,
+    textFontSize: 16,
+    segments: [
+      { fillStyle: '#eae56f', text: '10% Off' },
+      { fillStyle: '#89f26e', text: 'Free Shipping' },
+      { fillStyle: '#7de6ef', text: '15% Off' },
+      { fillStyle: '#e7706f', text: 'Try Again' },
+      { fillStyle: '#eae56f', text: '20% Off' },
+      { fillStyle: '#89f26e', text: 'Jackpot!' }
+    ],
+    animation: {
+      type: 'spinToStop',
+      duration: 5,
+      spins: 10,
+      callbackFinished: alertPrize
+    }
+  });
+
+  function spinWheel() {
+    wheel.startAnimation();
+  }
+
+  function alertPrize(indicatedSegment) {
+    alert("You won: " + indicatedSegment.text);
+  }
+</script>
+
+</body>
+</html>
